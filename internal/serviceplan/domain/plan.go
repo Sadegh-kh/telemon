@@ -17,5 +17,6 @@ type ServicePlan struct {
 	Name      string
 	Type      ServiceType
 	Bandwidth shared.BandWidth
+	DataCap   shared.Usage
 	BasePrice int
 }
