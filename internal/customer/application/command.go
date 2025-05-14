@@ -21,7 +21,9 @@ func (s *CustomerService) UpdatePhoneNumber(ctx context.Context, cmd UpdatePhone
 	if err != nil {
 		return err
 	}
+
 	customer.UpdatePhoneNumber(cmd.PhoneNumber)
+
 	return s.repo.Save(ctx, customer)
 }
 
@@ -30,6 +32,8 @@ func (s *CustomerService) UpdateAddress(ctx context.Context, cmd UpdateAddressCo
 	if err != nil {
 		return err
 	}
+
 	customer.UpdateAddress(cmd.Address)
+
 	return s.repo.Save(ctx, customer)
 }
