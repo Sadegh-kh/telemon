@@ -35,6 +35,24 @@ func NewCustomer(id CustomerID, name, address, phoneNumber string, nationalID Na
 	}, nil
 }
 
+func (c *Customer) UpdateName(newName string) error {
+	if newName == "" {
+		return errors.New("name cannot be empty")
+	}
+	c.Name = newName
+	c.UpdatedAt = time.Now()
+	return nil
+}
+
+func (c *Customer) UpdateNationalID(newNationalID NationalID) error {
+	if newNationalID == "" {
+		return errors.New("national ID cannot be empty")
+	}
+	c.NationalID = newNationalID
+	c.UpdatedAt = time.Now()
+	return nil
+}
+
 func (c *Customer) UpdatePhoneNumber(newPhoneNumber string) error {
 	if newPhoneNumber == "" {
 		return errors.New("phone number cannot be empty")
