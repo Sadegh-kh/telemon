@@ -82,3 +82,8 @@ func (s *CustomerCommandService) UpdateCustomer(ctx context.Context, cmd UpdateC
 
 	return s.repo.Save(ctx, customer)
 }
+
+func (s *CustomerCommandService) DeleteCustomer(ctx context.Context, id domain.CustomerID) error {
+
+	return s.repo.Delete(ctx, id)
+}
