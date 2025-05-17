@@ -1,20 +1,10 @@
-package application
+package command
 
 import (
 	"context"
 
 	"github.com/Sadegh-kh/telemon/internal/customer/domain"
 )
-
-type UpdatePhoneNumberCommand struct {
-	CustomerID  domain.CustomerID
-	PhoneNumber string
-}
-
-type UpdateAddressCommand struct {
-	CustomerID domain.CustomerID
-	Address    string
-}
 
 type UpdateCustomerInfoCommand struct {
 	CustomerID  domain.CustomerID
@@ -33,7 +23,7 @@ type CreateCustomerCommand struct {
 	RegionID    domain.RegionID
 }
 
-func (s *CustomerService) CreateCustomer(ctx context.Context, cmd CreateCustomerCommand) error {
+func (s *CustomerCommandService) CreateCustomer(ctx context.Context, cmd CreateCustomerCommand) error {
 	customer, err := domain.NewCustomer(
 		domain.CustomerID(s.idGenerator.GenerateID()),
 		cmd.Name,
@@ -49,7 +39,7 @@ func (s *CustomerService) CreateCustomer(ctx context.Context, cmd CreateCustomer
 	return s.repo.Create(ctx, customer)
 }
 
-func (s *CustomerService) UpdateCustomer(ctx context.Context, cmd UpdateCustomerInfoCommand) error {
+func (s *CustomerCommandService) UpdateCustomer(ctx context.Context, cmd UpdateCustomerInfoCommand) error {
 	customer, err := s.repo.FindByID(ctx, cmd.CustomerID)
 	if err != nil {
 		return err
