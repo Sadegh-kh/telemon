@@ -5,14 +5,22 @@ import (
 	"github.com/Sadegh-kh/telemon/internal/customer/application/query"
 )
 
-type CustomerHandler struct {
+type CustomerCommandHandler struct {
 	commandService *command.CustomerCommandService
-	queryService   *query.CusotmerQueryService
 }
 
-func NewCustomerHandler(cmd *command.CustomerCommandService, qry *query.CusotmerQueryService) *CustomerHandler {
-	return &CustomerHandler{
+type CustomerQueryHandler struct {
+	queryService *query.CusotmerQueryService
+}
+
+func NewCustomerCommandHandler(cmd *command.CustomerCommandService) *CustomerCommandHandler {
+	return &CustomerCommandHandler{
 		commandService: cmd,
-		queryService:   qry,
+	}
+}
+
+func NewCustomerQueryHandler(qry *query.CusotmerQueryService) *CustomerQueryHandler {
+	return &CustomerQueryHandler{
+		queryService: qry,
 	}
 }
