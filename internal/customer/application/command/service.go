@@ -6,13 +6,15 @@ import (
 )
 
 type CustomerCommandService struct {
-	repo        domain.CustomerRepository
+	cmdRepo     domain.CustomerCommandRepository
+	queryRepo   domain.CustomerQueryRepository
 	idGenerator idgenerator.IDGenerator
 }
 
-func NewCustomerService(repo domain.CustomerRepository, idGen idgenerator.IDGenerator) *CustomerCommandService {
+func NewCustomerService(cmdRepo domain.CustomerCommandRepository, queryRepo domain.CustomerQueryRepository, idGen idgenerator.IDGenerator) *CustomerCommandService {
 	return &CustomerCommandService{
-		repo:        repo,
+		cmdRepo:     cmdRepo,
+		queryRepo:   queryRepo,
 		idGenerator: idGen,
 	}
 }

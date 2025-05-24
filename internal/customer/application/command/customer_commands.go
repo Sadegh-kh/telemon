@@ -36,11 +36,11 @@ func (s *CustomerCommandService) CreateCustomer(ctx context.Context, cmd CreateC
 		return err
 	}
 
-	return s.repo.Create(ctx, customer)
+	return s.cmdRepo.Create(ctx, customer)
 }
 
 func (s *CustomerCommandService) UpdateCustomer(ctx context.Context, cmd UpdateCustomerInfoCommand) error {
-	customer, err := s.repo.FindByID(ctx, cmd.CustomerID)
+	customer, err := s.queryRepo.FindByID(ctx, cmd.CustomerID)
 	if err != nil {
 		return err
 	}
@@ -80,10 +80,10 @@ func (s *CustomerCommandService) UpdateCustomer(ctx context.Context, cmd UpdateC
 		}
 	}
 
-	return s.repo.Save(ctx, customer)
+	return s.cmdRepo.Save(ctx, customer)
 }
 
 func (s *CustomerCommandService) DeleteCustomer(ctx context.Context, id domain.CustomerID) error {
 
-	return s.repo.Delete(ctx, id)
+	return s.cmdRepo.Delete(ctx, id)
 }

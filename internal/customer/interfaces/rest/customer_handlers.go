@@ -80,6 +80,7 @@ func (h *CustomerHandler) UpdateCustomer(w http.ResponseWriter, r *http.Request)
 	}
 	httpx.ResponsdJSON(w, http.StatusOK, nil)
 }
+
 func (h *CustomerHandler) DeleteCustomer(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 	if err := h.commandService.DeleteCustomer(r.Context(), domain.CustomerID(id)); err != nil {
