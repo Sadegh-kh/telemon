@@ -13,16 +13,7 @@ func (c *CusotmerQueryService) GetCustomerByID(ctx context.Context, id domain.Cu
 		return nil, err
 	}
 
-	dto := &dto.CustomerDTO{
-		ID:          string(customer.ID),
-		Name:        customer.Name,
-		PhoneNumber: customer.PhoneNumber,
-		Address:     customer.Address,
-		NationalID:  string(customer.NationalID),
-		RegionID:    string(customer.RegionID),
-		CreatedAt:   customer.CreatedAt,
-		UpdatedAt:   customer.UpdatedAt,
-	}
+	dto := dto.ToCustomerDTO(customer)
 
 	return dto, nil
 }
@@ -33,16 +24,7 @@ func (c *CusotmerQueryService) GetCustomerByNatinalID(ctx context.Context, natio
 		return nil, err
 	}
 
-	dto := &dto.CustomerDTO{
-		ID:          string(customer.ID),
-		Name:        customer.Name,
-		PhoneNumber: customer.PhoneNumber,
-		Address:     customer.Address,
-		NationalID:  string(customer.NationalID),
-		RegionID:    string(customer.RegionID),
-		CreatedAt:   customer.CreatedAt,
-		UpdatedAt:   customer.UpdatedAt,
-	}
+	dto := dto.ToCustomerDTO(customer)
 
 	return dto, nil
 }
